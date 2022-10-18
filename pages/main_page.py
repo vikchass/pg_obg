@@ -14,4 +14,9 @@ class MainPage(BasePage):
         alert = self.browser.switch_to.alert
         alert.accept()
 
+    def go_to_basket(self):
+        link = self.browser.find_element(*MainPageLocators.LOGIN_LINK)
+        link.click()
+        assert 'login' in self.browser.current_url, "Cant find word login in url"
+
 
