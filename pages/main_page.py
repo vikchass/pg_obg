@@ -14,3 +14,4 @@ class MainPage(BasePage):
         alert = self.browser.switch_to.alert
         alert.accept()
 
+
