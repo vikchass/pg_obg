@@ -1,28 +1,26 @@
-import time
 from .base_page import BasePage
 from .locators import ProductPageLocators
 
 
 class ProductPage(BasePage):
-    def should_be_product_page(self):
-        self.should_be_button()
-        self.should_be_text()
-        # self.should_be_price()
+    def add_product_to_cart(self):
+        self.browser.find_element(*ProductPageLocators.ADD_TO_CART_BUTTON).click()
 
-    def should_be_product_page2(self):
-        self.should_not_be_success_message()
+    def should_be_success_message(self, product_title: str):
+        assert product_title == self.browser.find_element(*ProductPageLocators.SUCCESS_MESSAGE).text
 
-    def should_be_button(self):
-        self.is_element_present(*ProductPageLocators.BUTTON_1)
-        self.solve_quiz_and_get_code()
-
-    def should_be_text(self):
-        assert self.is_element_text(*ProductPageLocators.TEXT_1) == self.is_element_text(*ProductPageLocators.TEXT_2)
-
-    def should_be_price(self):
-        assert self.is_element_text(*ProductPageLocators.PRICE_1) == self.is_element_text(*ProductPageLocators.PRICE_2)
+    def should_be_price_message(self, product_price: str):
+        assert product_price == self.browser.find_element(*ProductPageLocators.MESSAGE_CART_PRICE).text
 
     def should_not_be_success_message(self):
-        assert self.is_not_element_present(*ProductPageLocators.TEXT_1), \
-            "Success message is presented, but should not be"
+        assert self.is_not_element_present(*ProductPageLocators.SUCCESS_MESSAGE)
+
+    def should_not_be_success_message_disappeared(self):
+        assert self.is_disappeared(*ProductPageLocators.SUCCESS_MESSAGE)
+
+    def get_product_title(self) -> str:
+        return self.browser.find_element(*ProductPageLocators.PRODUCT_TITLE).text
+
+    def get_product_price(self) -> str:
+        return self.browser.find_element(*ProductPageLocators.PRODUCT_PRICE).text
 

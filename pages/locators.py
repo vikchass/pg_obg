@@ -1,33 +1,38 @@
 from selenium.webdriver.common.by import By
 
 
-class MainPageLocators:
-    LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
-
-
-class LoginPageLocators:
-    LOGIN_URL = (By.CSS_SELECTOR, "#registration_link")
-
-    LOGIN_FORM = (By.CSS_SELECTOR, "#login_form")
-
-    REGISTR_FORM = (By.CSS_SELECTOR, "#register_form")
-
-
-class ProductPageLocators:
-    BUTTON_1 = (By.CLASS_NAME, "btn-add-to-basket")
-    TEXT_1 = (By.CSS_SELECTOR, "#messages > div:nth-child(1) > div > strong")
-    TEXT_2 = (By.TAG_NAME, "h1")
-    PRICE_1 = (By.CSS_SELECTOR, "#messages > div.alert.alert-safe.alert-noicon.alert-info.fade.in > div > p:nth-child(1) > strong")
-    PRICE_2 = (By.CLASS_NAME, "price_color")
-    EMAIL = (By.ID, "id_registration-email")
-    PASSWORD1 = (By.ID, "id_registration-password1")
-    PASSWORD2 = (By.ID, "id_registration-password2")
-
-
 class BasePageLocators:
+    LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
+    LOGIN_LINK_INVALID = (By.CSS_SELECTOR, "#login_link_inc")
+    CART_BUTTON = (By.XPATH, "//div[contains(@class, 'basket-mini')]//a")
     USER_ICON = (By.CSS_SELECTOR, ".icon-user")
 
 
+class BasketPageLocators:
+    EMPTY_BASKET_TEXT = (By.XPATH, "//*[@id='content_inner']/p/a")
+    PRODUCT_LIST_FORM = (By.XPATH, "//form[@id='basket_formset']")
 
 
+class LoginPageLocators:
+    LOGIN_FORM = (By.ID, "login_form")
+    REGISTER_FORM = (By.ID, "register_form")
 
+    INPUT_FIELD_USERNAME = (By.ID, "id_registration-email")
+    INPUT_FIELD_PASSWORD = (By.ID, "id_registration-password1")
+    INPUT_FIELD_REPEAT_PASSWORD = (By.ID, "id_registration-password2")
+
+    BUTTON_REGISTRATION_SUBMIT = (By.NAME, "registration_submit")
+
+
+class MainPageLocators:
+    pass
+
+
+class ProductPageLocators:
+    ADD_TO_CART_BUTTON = (By.XPATH, "//button[contains(@class, 'btn-add-to-basket')]")
+
+    PRODUCT_TITLE = (By.XPATH, "//div[contains(@class, 'product_main')]/h1")
+    PRODUCT_PRICE = (By.XPATH, "//div[contains(@class, 'product_main')]//p[@class='price_color']")
+
+    SUCCESS_MESSAGE = (By.XPATH, "//div[@id='messages']/div[1]//strong")
+    MESSAGE_CART_PRICE = (By.XPATH, "//div[@id='messages']/div[contains(@class, 'alert-info')]//strong")
